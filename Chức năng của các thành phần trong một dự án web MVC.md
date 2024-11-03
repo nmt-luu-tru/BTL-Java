@@ -80,10 +80,6 @@ Trên đây là danh sách các từ chuyên ngành phổ biến trong các dự
 
 ---
 
-Dưới đây là nội dung đã bổ sung thêm các lớp của tầng **View** để hoàn thiện mối quan hệ giữa các thành phần trong một ứng dụng MVC, dựa trên ví dụ về ứng dụng web bán giày trực tuyến.
-
----
-
 Trong một ứng dụng web theo mô hình **MVC (Model-View-Controller)**, các thành phần như **Controller**, **Service**, **Repository**, **DAO**, **Model**, **DTO**, **Utils**, và các thành phần khác có mối quan hệ chặt chẽ và hỗ trợ nhau trong quá trình xử lý yêu cầu của người dùng. Dưới đây là mối quan hệ giữa các thành phần này, mô tả cách chúng tương tác với nhau để hoàn thành một yêu cầu trong ứng dụng bán giày, bao gồm các lớp của tầng View.
 
 ### 1. Mối quan hệ tổng quan
