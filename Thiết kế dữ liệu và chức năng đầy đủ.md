@@ -123,12 +123,10 @@ Dưới đây là gợi ý các bảng dữ liệu cần có cho chương trình
 ### 13. **Bảng LICH_SU_GIA (Lịch sử giá)**
 - **Mục đích**: Theo dõi lịch sử thay đổi giá của sản phẩm.
 - **Các trường dữ liệu**:
-  -
-
- **ID**: Mã định danh lịch sử giá (Primary Key).
-  - **MaSP**: Mã sản phẩm (liên kết tới bảng SAN_PHAM).
-  - **GiaBan**: Giá bán của sản phẩm tại thời điểm cập nhật.
-  - **NgayCapNhat**: Ngày cập nhật giá.
+- **ID**: Mã định danh lịch sử giá (Primary Key).
+- **MaSP**: Mã sản phẩm (liên kết tới bảng SAN_PHAM).
+- **GiaBan**: Giá bán của sản phẩm tại thời điểm cập nhật.
+- **NgayCapNhat**: Ngày cập nhật giá.
 
 ### 14. **Bảng PHAN_QUYEN (Phân quyền)**
 - **Mục đích**: Quản lý quyền hạn cho từng nhân viên trong hệ thống.
