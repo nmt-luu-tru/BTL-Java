@@ -30,6 +30,8 @@ Trong một dự án web theo mô hình **MVC (Model-View-Controller)**, có nhi
 ### 7. **DTO (Data Transfer Object)**
    - **Chức năng**: Là một lớp chứa dữ liệu đơn giản, thường dùng để truyền dữ liệu giữa các tầng trong ứng dụng (giữa Controller và Service, giữa Service và View).
    - **Vai trò**: Tối ưu hóa quá trình truyền dữ liệu, bảo mật dữ liệu, và giảm sự phụ thuộc trực tiếp vào các lớp `Entity`. DTO thường được dùng trong các API để trả dữ liệu cho client mà không tiết lộ toàn bộ chi tiết của `Entity`.
+   - **DTO** thường được sử dụng để truyền dữ liệu giữa các tầng của ứng dụng mà không chứa logic nghiệp vụ. Chúng chỉ đơn giản là các đối tượng chứa dữ liệu, và thường được tạo ra cho từng phiên giao dịch hoặc yêu cầu cụ thể.
+   - DTO thường không có trạng thái toàn cục hoặc duy trì dữ liệu trong suốt vòng đời của ứng dụng. Thay vào đó, chúng thường được sử dụng một cách ngắn hạn và chỉ sống trong thời gian của một giao dịch hoặc yêu cầu.
 
 ### 8. **VO (Value Object)**
    - **Chức năng**: Là một đối tượng chỉ mang giá trị và thường là bất biến (immutable). `VO` chứa dữ liệu mà không có định danh duy nhất, thường được sử dụng trong các lớp nghiệp vụ.
