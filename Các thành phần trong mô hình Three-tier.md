@@ -75,3 +75,28 @@ Trong mô hình **3-Tier (3 tầng)**, các thành phần được tổ chức t
 - **Mô hình 3-Tier** phù hợp với các ứng dụng lớn, yêu cầu tính mở rộng cao, dễ bảo trì và dễ tích hợp với các nền tảng khác.
 - Nếu ứng dụng quản lý bán hàng của bạn đơn giản, bạn có thể giảm bớt một số thành phần như DTO, Repository để mô hình gọn nhẹ hơn.
 - **Kết hợp MVC với 3-Tier**: Nếu cần rõ ràng hơn trong giao diện và logic xử lý, bạn có thể sử dụng **MVC trong Presentation Layer**, chia rõ View, Controller và Model, còn tầng Business Logic và Data Access sẽ đặt trong Application và Data Layer của mô hình 3-Tier.
+
+---
+
+### Tại sao controller lại đặt trong tầng giao diện?
+
+Controller được đặt trong tầng Giao Diện (Presentation Layer) vì nó là thành phần trung gian chịu trách nhiệm điều phối luồng dữ liệu giữa tầng Giao Diện và tầng Logic, trực tiếp xử lý các yêu cầu từ người dùng. Trong ứng dụng desktop hoặc web, Controller nhận các sự kiện từ người dùng (như nhấn nút, nhập dữ liệu), sau đó quyết định cách xử lý và chuyển yêu cầu xuống tầng Logic để thực hiện các quy trình nghiệp vụ. Đây là lý do tại sao Controller được xem là một phần của tầng Giao Diện:
+
+1. **Quản lý tương tác của người dùng**: Controller chịu trách nhiệm xử lý các sự kiện người dùng và điều hướng. Vì người dùng tương tác với ứng dụng qua giao diện, nên Controller phải nằm ở tầng gần nhất với người dùng để nhận và xử lý các yêu cầu này.
+  
+2. **Liên kết View và Logic**: Controller nhận yêu cầu từ View (giao diện) và gọi các lớp nghiệp vụ hoặc xử lý dữ liệu trong Application Layer (tầng Logic). Sau khi nhận kết quả từ Logic, Controller chuyển dữ liệu đến View để hiển thị, giữ vai trò kết nối trực tiếp giữa View và các lớp nghiệp vụ.
+   
+3. **Phản hồi nhanh chóng**: Đặt Controller ở tầng Giao Diện giúp giảm độ trễ khi phản hồi các thao tác của người dùng, bởi vì các yêu cầu không cần phải qua nhiều bước trung gian.
+
+4. **Tách biệt Logic nghiệp vụ**: Controller chỉ điều phối luồng dữ liệu và xử lý các sự kiện cơ bản mà không xử lý trực tiếp các quy trình nghiệp vụ phức tạp, giúp tách biệt rõ ràng giữa tầng Giao Diện và tầng Logic. Mọi xử lý nghiệp vụ thực sự đều diễn ra trong Application Layer (Service, Business Logic), còn Controller chỉ đóng vai trò điều phối, gọi tầng Logic khi cần thiết.
+
+### Một số ví dụ minh họa:
+- Khi người dùng nhấn nút “Tìm kiếm sản phẩm”, Controller trong tầng Giao Diện sẽ:
+  1. Nhận sự kiện từ View (nút "Tìm kiếm").
+  2. Gọi tầng Logic (Service) để tìm kiếm dữ liệu sản phẩm.
+  3. Nhận kết quả từ tầng Logic và gửi lại cho View để hiển thị.
+
+- Nếu Controller ở trong tầng Logic, ứng dụng sẽ phải xử lý thêm các bước để chuyển thông tin từ View đến tầng Logic và ngược lại, làm cho cấu trúc phức tạp hơn.
+
+### Kết luận:
+Controller được xem là một phần của tầng Giao Diện trong mô hình 3-Tier vì vai trò chính của nó là điều phối tương tác của người dùng và xử lý dữ liệu giữa tầng Giao Diện và tầng Logic.
