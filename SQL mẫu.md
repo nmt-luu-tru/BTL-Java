@@ -36,10 +36,10 @@ INSERT INTO KHACH_HANG (MaKH, TenKH, SDT, Email, DiaChi, LoaiKH, DiemTichLuy) VA
 ('KH003', 'Lê Thị Thu', '0936543210', 'thu@hotmail.com', 'Đà Nẵng', 'VIP', 200);
 
 -- Thêm dữ liệu vào bảng NHAN_VIEN
-INSERT INTO NHAN_VIEN (MaNV, TenNV, ChucVu, SDT, Email) VALUES
-('NV001', 'Nguyễn Hữu Quang', 'Thu ngân', '0912345678', 'quang@shop.com'),
-('NV002', 'Lê Minh Tâm', 'Bán hàng', '0923456789', 'tam@shop.com'),
-('NV003', 'Trần Quang Vinh', 'Quản lý', '0934567890', 'vinh@shop.com');
+INSERT INTO NHAN_SU (MaNV, TenNV, ChucVu, SDT, Email) VALUES
+('NV001', 'Nguyễn Hữu Quang', 'NV Kho', '0912345678', 'quang@shop.com'),
+('NV002', 'Lê Minh Tâm', 'NV Thu ngan', '0923456789', 'tam@shop.com'),
+('NV003', 'Trần Quang Vinh', 'Quan ly', '0934567890', 'vinh@shop.com');
 
 -- Thêm dữ liệu vào bảng HOA_DON
 INSERT INTO HOA_DON (MaHD, NgayLap, MaKH, TongTien, TrangThai, PhuongThucTT, LoaiHoaDon, MaNV) VALUES
@@ -53,12 +53,6 @@ INSERT INTO CHI_TIET_HOA_DON (MaHD, MaSP, SoLuong, GiaBan) VALUES
 ('HD002', 'SP002', 2, 1000.00),
 ('HD003', 'SP004', 1, 1500.00);
 
--- Thêm dữ liệu vào bảng PHAN_QUYEN
-INSERT INTO PHAN_QUYEN (MaNV, Quyen) VALUES
-('NV001', 'Quản lý'),
-('NV002', 'Chỉnh sửa'),
-('NV003', 'Toàn quyền');
-```
 
 ### Giải thích:
 1. **LOAI_SAN_PHAM**: Thêm các loại sản phẩm giày như giày thể thao, giày cao gót, và giày sandal.
@@ -69,6 +63,5 @@ INSERT INTO PHAN_QUYEN (MaNV, Quyen) VALUES
 6. **NHAN_VIEN**: Thêm thông tin nhân viên, bao gồm chức vụ và thông tin liên hệ.
 7. **HOA_DON**: Thêm các hóa đơn với thông tin về ngày lập, khách hàng, tổng tiền, trạng thái thanh toán, phương thức thanh toán và loại hóa đơn.
 8. **CHI_TIET_HOA_DON**: Thêm chi tiết về các sản phẩm trong mỗi hóa đơn, bao gồm số lượng và giá bán.
-9. **PHAN_QUYEN**: Thêm quyền cho nhân viên, ví dụ quyền quản lý, chỉnh sửa, hoặc toàn quyền. 
 
 Dữ liệu trên chỉ mang tính minh họa và có thể được thay đổi tùy theo nhu cầu thực tế của bạn.
