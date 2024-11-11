@@ -110,13 +110,13 @@ Dưới đây là gợi ý các bảng dữ liệu cần có cho chương trình
   - **SoLuong**: Số lượng sản phẩm trong giỏ hàng.
   - **GiaBan**: Giá bán của sản phẩm tại thời điểm thêm vào giỏ hàng.
 
-### 12. **Bảng NHAN_VIEN (Nhân viên)**
-- **Mục đích**: Quản lý thông tin nhân viên bán hàng và admin của cửa hàng.
+### 12. **Bảng NHAN_SU (Nhân sự)**
+- **Mục đích**: Quản lý thông tin các nhân viên và admin của cửa hàng.
 - **Các trường dữ liệu**:
   - **ID**: Mã định danh của nhân viên (Primary Key).
   - **MaNV**: Mã nhân viên.
   - **TenNV**: Tên nhân viên.
-  - **ChucVu**: Chức vụ (thu ngân, bán hàng, quản lý).
+  - **ChucVu**: Chức vụ (NV Kho, NV Thu ngân, Quản lý).
   - **SDT**: Số điện thoại của nhân viên.
   - **Email**: Email của nhân viên.
 
@@ -132,8 +132,8 @@ Dưới đây là gợi ý các bảng dữ liệu cần có cho chương trình
 - **Mục đích**: Quản lý quyền hạn cho từng nhân viên trong hệ thống.
 - **Các trường dữ liệu**:
   - **ID**: Mã định danh phân quyền (Primary Key).
-  - **MaNV**: Mã nhân viên (liên kết tới bảng NHAN_VIEN).
-  - **Quyen**: Loại quyền của nhân viên (chỉ xem, chỉnh sửa, quản lý toàn quyền).
+  - **MaChucVu**: Chức vụ (liên kết tới bảng NHAN_VIEN).
+  - **Quyen**: Loại quyền của chức vụ (chỉ xem, chỉnh sửa, quản lý toàn quyền, ....).
 
 
 ## Mô tả quan hệ giữa các bảng
@@ -145,7 +145,7 @@ Dưới đây là gợi ý các bảng dữ liệu cần có cho chương trình
 
 - **Quan hệ nhiều-nhiều (N-N)**:
   - **SAN_PHAM - KHUYEN_MAI**: Một sản phẩm có thể nằm trong nhiều chương trình khuyến mãi và ngược lại. Mối quan hệ này được quản lý qua **CHI_TIET_KHUYEN_MAI**.
-  - **NHAN_VIEN - PHAN_QUYEN**: Một nhân viên có thể có nhiều quyền khác nhau trong hệ thống.
+  - **NHAN_SU - PHAN_QUYEN**: Một nhân viên có thể có nhiều quyền khác nhau trong hệ thống.
 
 Với cấu trúc này, chương trình quản lý cửa hàng giày sẽ hỗ trợ đầy đủ các hoạt động quản lý bán hàng, tồn kho, khuyến mãi, khách hàng, và nhân viên.
 
