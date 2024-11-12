@@ -251,3 +251,159 @@ Với cấu trúc này, chương trình quản lý cửa hàng giày sẽ hỗ t
 
 ### Kết luận
 Với các giao diện và tính năng trên, hệ thống quản lý cửa hàng giày có thể hỗ trợ toàn diện các hoạt động kinh doanh tại cửa hàng, từ quản lý sản phẩm, bán hàng, và tồn kho đến khuyến mãi, khách hàng, và báo cáo doanh thu. Hệ thống này đảm bảo cả nhân viên bán hàng và admin đều có các công cụ cần thiết để hoạt động hiệu quả và hỗ trợ tốt nhất cho khách hàng.
+
+---
+
+---
+
+### 1. **Table `PRODUCT` (Sản phẩm)**
+- **Mục đích**: Lưu thông tin chi tiết về các sản phẩm giày trong cửa hàng.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh duy nhất cho từng sản phẩm (Primary Key).
+  - **SKU**: Mã sản phẩm (SKU).
+  - **ProductName**: Tên sản phẩm.
+  - **CategoryID**: Mã loại sản phẩm (liên kết tới bảng `PRODUCT_CATEGORY`).
+  - **Color**: Màu sắc của giày.
+  - **Size**: Kích cỡ giày (38, 39, 40, v.v.).
+  - **Price**: Giá bán.
+  - **StockQuantity**: Số lượng tồn kho.
+  - **Barcode**: Mã vạch sản phẩm (dùng để quét mã).
+  - **Description**: Mô tả chi tiết về sản phẩm.
+  - **ManufacturerID**: Mã nhà sản xuất (liên kết tới bảng `MANUFACTURER`).
+
+### 2. **Table `PRODUCT_CATEGORY` (Loại sản phẩm)**
+- **Mục đích**: Phân loại các loại sản phẩm giày.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh duy nhất cho loại sản phẩm (Primary Key).
+  - **CategoryCode**: Mã phân loại sản phẩm.
+  - **CategoryName**: Tên loại sản phẩm (giày thể thao, giày cao gót, v.v.).
+
+### 3. **Table `WAREHOUSE` (Kho hàng)**
+- **Mục đích**: Quản lý số lượng sản phẩm tồn kho tại từng chi nhánh hoặc vị trí.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh của kho (Primary Key).
+  - **WarehouseCode**: Mã kho.
+  - **Location**: Vị trí của kho (chi nhánh hoặc địa chỉ cụ thể).
+  - **ProductID**: Mã sản phẩm.
+  - **QuantityInStock**: Số lượng tồn kho của từng sản phẩm tại kho cụ thể.
+
+### 4. **Table `INVOICE` (Hóa đơn)**
+- **Mục đích**: Lưu thông tin về các giao dịch bán hàng.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh của hóa đơn (Primary Key).
+  - **InvoiceCode**: Mã hóa đơn.
+  - **DateCreated**: Ngày lập hóa đơn.
+  - **CustomerID**: Mã khách hàng (liên kết tới bảng `CUSTOMER`).
+  - **TotalAmount**: Tổng số tiền của hóa đơn.
+  - **Status**: Trạng thái của hóa đơn (đã thanh toán, chờ thanh toán).
+  - **PaymentMethod**: Phương thức thanh toán (tiền mặt, thẻ, chuyển khoản).
+  - **InvoiceType**: Loại hóa đơn (tại cửa hàng hoặc trực tuyến).
+  - **EmployeeID**: Mã nhân viên tạo hóa đơn (liên kết tới bảng `EMPLOYEE`).
+
+### 5. **Table `INVOICE_DETAIL` (Chi tiết hóa đơn)**
+- **Mục đích**: Lưu chi tiết các sản phẩm trong từng hóa đơn, bao gồm số lượng và giá bán.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh của chi tiết hóa đơn (Primary Key).
+  - **InvoiceID**: Mã hóa đơn (liên kết tới bảng `INVOICE`).
+  - **ProductID**: Mã sản phẩm (liên kết tới bảng `PRODUCT`).
+  - **Quantity**: Số lượng sản phẩm trong hóa đơn.
+  - **UnitPrice**: Giá bán của sản phẩm tại thời điểm mua.
+
+### 6. **Table `CUSTOMER` (Khách hàng)**
+- **Mục đích**: Lưu thông tin khách hàng của cửa hàng.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh khách hàng (Primary Key).
+  - **CustomerCode**: Mã khách hàng.
+  - **CustomerName**: Tên khách hàng.
+  - **PhoneNumber**: Số điện thoại khách hàng.
+  - **Email**: Email của khách hàng.
+  - **Address**: Địa chỉ khách hàng.
+  - **CustomerType**: Loại khách hàng (VIP, thường).
+  - **LoyaltyPoints**: Điểm tích lũy của khách hàng (hỗ trợ chương trình khách hàng thân thiết).
+
+### 7. **Table `MANUFACTURER` (Nhà sản xuất)**
+- **Mục đích**: Quản lý thông tin các nhà cung cấp hoặc nhà sản xuất giày.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh của nhà sản xuất (Primary Key).
+  - **ManufacturerCode**: Mã nhà sản xuất.
+  - **ManufacturerName**: Tên nhà sản xuất (như Nike, Adidas).
+  - **Country**: Quốc gia của nhà sản xuất.
+  - **ContactInfo**: Thông tin liên hệ (số điện thoại, email).
+
+### 8. **Table `PROMOTION` (Chương trình khuyến mãi)**
+- **Mục đích**: Lưu thông tin về các chương trình khuyến mãi.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh khuyến mãi (Primary Key).
+  - **PromotionCode**: Mã khuyến mãi.
+  - **PromotionName**: Tên chương trình khuyến mãi.
+  - **StartDate**: Ngày bắt đầu khuyến mãi.
+  - **EndDate**: Ngày kết thúc khuyến mãi.
+  - **DiscountRate**: Mức giảm giá (% hoặc giá trị tiền giảm).
+  - **PromotionType**: Loại khuyến mãi (giảm giá trực tiếp, mua 1 tặng 1, v.v.).
+
+### 9. **Table `PROMOTION_DETAIL` (Chi tiết khuyến mãi)**
+- **Mục đích**: Áp dụng chi tiết các chương trình khuyến mãi cho từng sản phẩm cụ thể.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh chi tiết khuyến mãi (Primary Key).
+  - **PromotionID**: Mã khuyến mãi (liên kết tới bảng `PROMOTION`).
+  - **ProductID**: Mã sản phẩm (liên kết tới bảng `PRODUCT`).
+  - **Condition**: Điều kiện áp dụng khuyến mãi (nếu có).
+
+### 10. **Table `CART` (Giỏ hàng tạm)**
+- **Mục đích**: Lưu trữ thông tin giỏ hàng tạm cho khách hàng trước khi chuyển thành hóa đơn.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh của giỏ hàng (Primary Key).
+  - **CustomerID**: Mã khách hàng (liên kết tới bảng `CUSTOMER`).
+  - **TotalAmount**: Tổng giá trị giỏ hàng.
+  - **Status**: Trạng thái giỏ hàng (đang xử lý, đã thanh toán).
+
+### 11. **Table `CART_DETAIL` (Chi tiết giỏ hàng)**
+- **Mục đích**: Quản lý chi tiết các sản phẩm trong giỏ hàng trước khi chuyển thành hóa đơn.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh chi tiết giỏ hàng (Primary Key).
+  - **CartID**: Mã giỏ hàng (liên kết tới bảng `CART`).
+  - **ProductID**: Mã sản phẩm (liên kết tới bảng `PRODUCT`).
+  - **Quantity**: Số lượng sản phẩm trong giỏ hàng.
+  - **UnitPrice**: Giá bán của sản phẩm tại thời điểm thêm vào giỏ hàng.
+
+### 12. **Table `EMPLOYEE` (Nhân sự)**
+- **Mục đích**: Quản lý thông tin các nhân viên và admin của cửa hàng.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh của nhân viên (Primary Key).
+  - **EmployeeCode**: Mã nhân viên.
+  - **EmployeeName**: Tên nhân viên.
+  - **Position**: Chức vụ (NV Kho, NV Thu ngân, Quản lý).
+  - **PhoneNumber**: Số điện thoại của nhân viên.
+  - **Email**: Email của nhân viên.
+
+### 13. **Table `PRICE_HISTORY` (Lịch sử giá)**
+- **Mục đích**: Theo dõi lịch sử thay đổi giá của sản phẩm.
+- **Các trường dữ liệu**:
+  - **ID**: Mã định danh lịch sử giá (Primary Key).
+  - **ProductID**: Mã sản phẩm (liên kết tới bảng `PRODUCT`).
+  - **Price**: Giá bán của sản phẩm tại thời điểm cập nhật.
+  - **UpdateDate**: Ngày cập nhật giá.
+
+### 14. **Table `ROLE` (Phân quyền)**
+- **Mục đích**: Quản lý quyền hạn cho từng nhân viên trong hệ thống.
+-
+
+ **Các trường dữ liệu**:
+  - **ID**: Mã định danh phân quyền (Primary Key).
+  - **PositionCode**: Chức vụ (liên kết tới bảng `EMPLOYEE`).
+  - **PermissionType**: Loại quyền của chức vụ (chỉ xem, chỉnh sửa, quản lý toàn quyền, ....).
+
+---
+
+### Mô tả quan hệ giữa các bảng
+- **Quan hệ một-nhiều (1-N)**:
+  - **PRODUCT - INVOICE_DETAIL**: Một sản phẩm có thể xuất hiện trong nhiều chi tiết hóa đơn.
+  - **INVOICE - INVOICE_DETAIL**: Một hóa đơn có thể chứa nhiều sản phẩm trong chi tiết hóa đơn.
+  - **PROMOTION - PROMOTION_DETAIL**: Một chương trình khuyến mãi có thể áp dụng cho nhiều sản phẩm.
+  - **CUSTOMER - INVOICE**: Một khách hàng có thể có nhiều hóa đơn.
+
+- **Quan hệ nhiều-nhiều (N-N)**:
+  - **PRODUCT - PROMOTION**: Một sản phẩm có thể nằm trong nhiều chương trình khuyến mãi và ngược lại. Mối quan hệ này được quản lý qua **PROMOTION_DETAIL**.
+  - **EMPLOYEE - ROLE**: Một nhân viên có thể có nhiều quyền khác nhau trong hệ thống.
+
+Cấu trúc bảng dữ liệu này đảm bảo rằng chương trình quản lý cửa hàng giày sẽ hỗ trợ đầy đủ các chức năng từ quản lý sản phẩm, khách hàng, hóa đơn, khuyến mãi, đến nhân sự và phân quyền.
